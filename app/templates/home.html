@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="formwrapper">
+  <h1>Recording Temperature Data</h1>
+  <form action = "/", method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group row">
+      <!-- <label for="colFormLabelLg" >Record Temperature</label> -->
+      <div class="col-sm-4">
+      {{form.temp.label(class="col-sm-4 col-form-label col-form-label-lg")}}
+        
+             
+      <!--<input type="email"  placeholder="col-form-label-lg"> --> 
+        {% if form.temp.errors %}
+        {{form.temp(class="form-control form-control-lg is-invalid")}}
+        <div class="invalid-feedback">
+            {%for error in  form.temp.errors %}
+            <span>{{error}}</span>
+            {%endfor%}
+        </div>
+      {%else%}
+        {{ form.temp(class="form-control")}}
+      {%endif%}
+      </div>
+        
+      <div class="col-sm-4">
+      {{form.section.label(class="col-sm-4 col-form-label col-form-label-lg")}}   
+      <!--<input type="email"  placeholder="col-form-label-lg"> --> 
+        {% if form.section.errors %}
+        {{form.section(class="form-control form-control-lg is-invalid")}}
+        <div class="invalid-feedback">
+            {%for error in  form.section.errors %}
+            <span>{{error}}</span>
+            {%endfor%}
+        </div>
+      {%else%}
+        {{ form.section(class = "form-control")}}
+      {%endif%}
+      </div>
+        
+    </div><div class="form-group">
+        {{ form.submit(class="btn btn-outline-info")}}
+          
+    </div>
+      
+  </form>
+</div>
+{%endblock content%}

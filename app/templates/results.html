@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+<div class="chart" id="bargraph">
+    <script>
+        var graphs = {{plot | safe}};
+        Plotly.plot('bargraph',graphs,{});
+    </script>
+</div>
+<br>
+<div class="float-left">
+<h2>Recorded Data</h2>
+</div>
+<div class="float-md-right">
+    <a href = "{{ url_for('static', filename='data.csv') }}" class="btn btn-primary btn active" role="button" aria-pressed="true" >Download csv file</a></div> 
+
+<table id="dtBasicExample", class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Time</th>
+        <th scope="col">Temperature</th>
+        <th scope="col">Section</th>
+        </tr>
+    </thead>
+    {% for i in range(1, len)%}
+
+    <tbody>
+        <tr>
+        <th scope="row">{{i}}</th>
+        <td>{{ records[i].Time }}</td>
+        <td>{{ records[i].Temperature}}</td>
+        <td>{{records[i].Section}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    
+</table>
+</div>
+{% endblock content%}
